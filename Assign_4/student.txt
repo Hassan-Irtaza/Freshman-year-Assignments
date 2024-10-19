@@ -1,0 +1,4 @@
+ID Name Subject1 Subject2 Subject3
+101 John 85 90 78
+102 Alice 88 92 79
+103 Bobby 82 76 91

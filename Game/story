@@ -1,0 +1,113 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+struct Character
+{
+    int health = 100;
+    int attack = 20;
+    int shield = 5;
+
+    void increaseHealth(int amount)
+    {
+        health += amount;
+        cout << "Health increased by " << amount << ". Current health: " << health << endl;
+    }
+};
+
+struct Inventory
+{
+    const int maxHealthPotions = 5;
+    const int maxSwords = 1;
+    int healthPotions = 0;
+    int swords = 0;
+    Item items[10]; // Array to store items (max 10)
+
+    // Implement your logic here to return 0 for health potion, 1 for rage potion, and 2 for sword based on itemCode
+    int GetItemType(int itemCode)
+    {
+        return itemCode;
+    }
+
+    bool AddItem(int itemCode)
+    {
+        int type = GetItemType(itemCode);
+        // ... (rest of AddItem logic)
+    }
+
+    // Implement functions for using items here
+};
+
+int getChestLoot(int choice)
+{
+    // Implement chest loot logic here
+}
+
+void myturn(int attack, int enemyDefense, int &enemyHealth)
+{
+    // ... (rest of myturn logic)
+}
+
+void enemyTurn(int enemyAttack, int defense, int &health)
+{
+    // ... (rest of enemyTurn logic)
+}
+
+int play(int health, int attack, int defense, int monster, Inventory inventory)
+{
+    // ... (rest of play logic)
+}
+
+int main()
+{
+    srand(time(0));
+
+    Character player;
+    Inventory inventory;
+    int health = player.health;
+    int attack = player.attack;
+    int defense = player.shield;
+
+    cout << "You were born into a once-great lineage of monster hunters, wielding a legendary weapon known as the Dragonslayer. However, a mysterious calamity known as the Blight shattered your family and scattered the Dragonslayer's fragments. Now, whispers of renewed monstrous activity and the Blight's return draw you on a quest to reclaim your heritage and restore balance to the world.\n";
+
+    cout << "Your journey begins in your ancestral village, now shrouded in an unnatural darkness. An elder approaches you, his face etched with worry.\n";
+    cout << "\"Greetings, young one,\" the elder rasps.  \"The Blight has returned, and the whispers speak of a dragon at its heart. You must find the scattered fragments of the Dragonslayer and defeat the beast! But before you leave, take this.\"\n";
+    cout << "The elder hands you a worn leather satchel. Inside, you find a single healing potion.\n";
+    inventory.AddItem(0); // Add a health potion to inventory
+
+    // Entering the forest
+    cout << "With a heavy heart, you depart the village and head towards the rumored location of the first fragment - a dark and ancient forest.\n";
+    health = play(health, attack, defense, 0, inventory); // Fight a goblin
+
+    if (health <= 0)
+    {
+        return 0;
+    }
+
+    cout << "Exhausted but victorious, you emerge from the forest. You open the chest you found and find...\n";
+    inventory.AddItem(getChestLoot(1)); // Get loot from first chest
+
+    // Explore a ruined castle
+    cout << "Following rumors, you arrive at a crumbling castle, said to hold another fragment. But a lone knight now guards its entrance.\n";
+    health = play(health, attack, defense, 1, inventory);
+
+    if (health <= 0)
+    {
+        return 0;
+    }
+
+    cout << "You open the chest within the castle and find...\n";
+    inventory.AddItem(getChestLoot(1)); // Get loot from second chest
+
+    // Confront the dragon
+    cout << "Finally, you reach a volcanic wasteland, the dragon's lair. The air crackles with raw magic. Steel yourself, for the final battle awaits...\n";
+    health = play(health, attack, defense, 2, inventory);
+
+    if (health <= 0)
+    {
+        cout << "The dragon's flames consume you. Better luck next time!\n";
+    }
+    else
+    {
+        cout << "With a mighty roar, the dragon falls. You gather the
